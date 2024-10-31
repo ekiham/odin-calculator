@@ -1,7 +1,59 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .calc-frame {
-  padding: 10px;
   background-color: red;
   height: 640px;
   width: 440px;
   margin: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-area {
+  display: flex;
+  width: 95%;
+  height: 60%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.num-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33.3333333333333333%;
+  height: 20%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+.operator {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+.lefties {
+  display: flex;
+  width: 75%;
+  height: 100%;
+  flex-wrap: wrap;
+}
+
+.righties {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 100%;
 }

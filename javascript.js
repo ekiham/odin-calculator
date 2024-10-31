@@ -6,20 +6,70 @@ var digitButtons = document.createElement("div");
 var operatorButtons = document.createElement("div");
 
 const calcFrame = document.querySelector(".calc-frame");
+var lowerButtons = document.createElement("div");
+lowerButtons.classList.add("button-area");
 
 calcScreen.textContent = "Screen here";
 calcScreen.classList.add("calc-screen");
 calcFrame.appendChild(calcScreen);
+calcFrame.appendChild(lowerButtons);
 
-leftButtons.textContent = "Left buttons here";
 leftButtons.classList.add("lefties");
-calcFrame.appendChild(leftButtons);
+lowerButtons.appendChild(leftButtons);
 
-rightButtons.textContent = "Right buttons here";
 rightButtons.classList.add("righties");
-calcFrame.appendChild(rightButtons);
+lowerButtons.appendChild(rightButtons);
 
-function createDigits() {
+function createButtonRows() {
+  for (let i = 0; i < 5; i++) {
+    var leftSide = document.querySelector(".lefties");
+    var row = document.createElement("div");
+    row.classList.add("button-row");
+    let id = `row-${i}`;
+    row.id = id;
+    leftSide.appendChild(row);
+  }
+}
+
+createButtonRows();
+
+function createCalculatorButtons() {
+  const lefties = document.querySelector(".lefties");
+  const buttonValues = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
+
+  const clearAll = document.createElement("button");
+  clearAll.textContent = "A/C";
+  clearAll.className = "num-button";
+  lefties.appendChild(clearAll);
+
+  const plusMinus = document.createElement("button");
+  plusMinus.textContent = "+/-";
+  plusMinus.className = "num-button";
+  lefties.appendChild(plusMinus);
+
+  const percentage = document.createElement("button");
+  percentage.textContent = "%";
+  percentage.className = "num-button";
+  lefties.appendChild(percentage);
+
+  buttonValues.forEach((value, index) => {
+    const createButton = document.createElement("button");
+    createButton.className = "num-button";
+    createButton.textContent = value;
+
+    if (value === 0) {
+      createButton.style.width = "100%";
+    } else {
+      createButton.style.width = "33.3333333333333%";
+    }
+
+    lefties.appendChild(createButton);
+  });
+}
+
+createCalculatorButtons();
+
+/* function createDigits() {
   for (let i = 0; i < 10; i++) {
     var leftSide = document.querySelector(".lefties");
     var digit = document.createElement("button");
@@ -29,7 +79,7 @@ function createDigits() {
   }
 }
 
-createDigits();
+createDigits(); */
 
 function createOperators() {
   var rightSide = document.querySelector(".righties");
