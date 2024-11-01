@@ -9,7 +9,7 @@ const calcFrame = document.querySelector(".calc-frame");
 var lowerButtons = document.createElement("div");
 lowerButtons.classList.add("button-area");
 
-calcScreen.textContent = "N/A";
+calcScreen.textContent = "0";
 calcScreen.classList.add("calc-screen");
 calcFrame.appendChild(calcScreen);
 calcFrame.appendChild(lowerButtons);
@@ -20,6 +20,30 @@ lowerButtons.appendChild(leftButtons);
 rightButtons.classList.add("righties");
 lowerButtons.appendChild(rightButtons);
 
+var displayNumber = "0";
+var calcNumOriginal = 0;
+
+function createNumberStrings(buttonId) {
+  if (displayNumber === "0") {
+    displayNumber = buttonId.toString();
+  } else {
+    displayNumber += buttonId.toString();
+  }
+  calcNumOriginal = Number(displayNumber);
+  calcScreen.textContent = displayNumber;
+
+  return {
+    displayNumber,
+    calcNumOriginal,
+  };
+}
+
+function clearAllData() {
+  displayNumber = "0";
+  calcNumOriginal = 0;
+  calcScreen.textContent = displayNumber;
+}
+
 function createCalculatorButtons() {
   const lefties = document.querySelector(".lefties");
   const buttonValues = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
@@ -28,6 +52,7 @@ function createCalculatorButtons() {
   clearAll.textContent = "A/C";
   clearAll.className = "num-button";
   clearAll.style.backgroundColor = "#d1b48c";
+  clearAll.addEventListener("click", () => clearAllData());
   lefties.appendChild(clearAll);
 
   const plusMinus = document.createElement("button");
@@ -46,6 +71,8 @@ function createCalculatorButtons() {
     const createButton = document.createElement("button");
     createButton.className = "num-button";
     createButton.textContent = value;
+    createButton.setAttribute("id", value);
+    createButton.addEventListener("click", () => createNumberStrings(value));
 
     if (value === 0) {
       createButton.style.width = "calc(97% + 4px)";
