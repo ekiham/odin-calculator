@@ -9,7 +9,7 @@ const calcFrame = document.querySelector(".calc-frame");
 var lowerButtons = document.createElement("div");
 lowerButtons.classList.add("button-area");
 
-calcScreen.textContent = "Screen here";
+calcScreen.textContent = "N/A";
 calcScreen.classList.add("calc-screen");
 calcFrame.appendChild(calcScreen);
 calcFrame.appendChild(lowerButtons);
@@ -20,19 +20,6 @@ lowerButtons.appendChild(leftButtons);
 rightButtons.classList.add("righties");
 lowerButtons.appendChild(rightButtons);
 
-function createButtonRows() {
-  for (let i = 0; i < 5; i++) {
-    var leftSide = document.querySelector(".lefties");
-    var row = document.createElement("div");
-    row.classList.add("button-row");
-    let id = `row-${i}`;
-    row.id = id;
-    leftSide.appendChild(row);
-  }
-}
-
-createButtonRows();
-
 function createCalculatorButtons() {
   const lefties = document.querySelector(".lefties");
   const buttonValues = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
@@ -40,16 +27,19 @@ function createCalculatorButtons() {
   const clearAll = document.createElement("button");
   clearAll.textContent = "A/C";
   clearAll.className = "num-button";
+  clearAll.style.backgroundColor = "#d1b48c";
   lefties.appendChild(clearAll);
 
   const plusMinus = document.createElement("button");
   plusMinus.textContent = "+/-";
   plusMinus.className = "num-button";
+  plusMinus.style.backgroundColor = "#d1b48c";
   lefties.appendChild(plusMinus);
 
   const percentage = document.createElement("button");
   percentage.textContent = "%";
   percentage.className = "num-button";
+  percentage.style.backgroundColor = "#d1b48c";
   lefties.appendChild(percentage);
 
   buttonValues.forEach((value, index) => {
@@ -58,9 +48,7 @@ function createCalculatorButtons() {
     createButton.textContent = value;
 
     if (value === 0) {
-      createButton.style.width = "100%";
-    } else {
-      createButton.style.width = "33.3333333333333%";
+      createButton.style.width = "calc(97% + 4px)";
     }
 
     lefties.appendChild(createButton);
@@ -106,6 +94,7 @@ function createOperators() {
 
   var equality = document.createElement("button");
   equality.className = "operator";
+  equality.style.backgroundColor = "#d1b48c";
   equality.textContent = "=";
   rightSide.appendChild(equality);
 }
