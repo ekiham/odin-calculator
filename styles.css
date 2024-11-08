@@ -7,7 +7,7 @@ body {
 .calc-screen {
   display: flex;
   font-size: 400%;
-  background-color: aqua;
+  background-color: #bbdaa4;
   width: 93%;
   height: 20%;
   justify-content: flex-end;
@@ -27,6 +27,7 @@ body {
   justify-content: flex-end;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .button-area {
