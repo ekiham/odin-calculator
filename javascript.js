@@ -89,6 +89,12 @@ function operateDivision() {
   newCalc = true;
 }
 
+function minusOne() {
+  calcNumOriginal *= -1;
+  displayNumber *= -1;
+  calcScreen.textContent = displayNumber;
+}
+
 function calculate() {
   var result = 0;
   if (calcFirst !== null && calcSecond !== null) {
@@ -142,6 +148,7 @@ function createCalculatorButtons() {
   plusMinus.className = "num-button";
   plusMinus.style.backgroundColor = "#d1b48c";
   lefties.appendChild(plusMinus);
+  plusMinus.addEventListener("click", () => minusOne());
 
   const percentage = document.createElement("button");
   percentage.textContent = "%";
