@@ -32,6 +32,8 @@ function createNumberStrings(buttonId) {
   if (newCalc) {
     displayNumber = buttonId.toString();
     newCalc = false;
+  } else if (displayNumber.length >= 12) {
+    return null;
   } else {
     displayNumber += buttonId.toString();
     newCalc = false;
@@ -97,9 +99,25 @@ function calculate() {
     } else if (operatorValue === "*") {
       result = calcFirst * calcSecond;
     } else if (operatorValue === "/") {
-      result = calcFirst / calcSecond;
+      if (calcSecond === 0) {
+        calcScreen.textContent = ":(";
+        calcFirst = null;
+        calcFirst = null;
+        return null;
+      } else {
+        result = calcFirst / calcSecond;
+      }
     }
-    calcScreen.textContent = result.toFixed(6);
+    let resultText;
+    if (result.toString().length > 12) {
+      resultText = result.toExponential(6);
+    } else if (Number.isInteger(result)) {
+      resultText = result.toString();
+    } else {
+      resultText = parseFloat(result.toFixed(6)).toString();
+    }
+    calcScreen.textContent =
+      resultText.length > 12 ? resultText.slice(0, 12) : resultText;
 
     // Reset for next calculation
     calcFirst = result;
